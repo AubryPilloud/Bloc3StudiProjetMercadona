@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mercadona : Page d'accueil</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    </head>
+
+    <body>
+
+        <h1 id="titreMercadona">Mercadona</h1>
+
+        <img 
+            id="imgMercadona" 
+            alt="Logo Mercadona" 
+            src={% static 'imagesWeb/Mercadona1.png' %}
+            width="560"
+            height="244"
+        />
+        <br>
+        
+        <a id="boutonCatalogue" href="{% url 'catalogue' %}"><button>Accèder au catalogue</button></a>
+
+    </body>
+</html>

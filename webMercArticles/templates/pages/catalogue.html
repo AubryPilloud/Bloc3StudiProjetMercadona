@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Mercadona : Catalogue</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}"/>
+
+        <!--Pour un raison que je n'arrive pas à expliquer,
+        les css suivants ne marchent pas si ils sont placés dans le style.css-->
+        <style>
+            table, th, td {border: 1px solid;}
+            table{width: 95%; align-items: center;}
+            td{padding: 5px 30px; text-align: center;}
+            strong{color: red;}
+            nav{background-color: #f1582a; padding: 0px 10px 10px 10px; display: table;}
+        </style>
+
+    </head>
+
+    <body>
+        <header id="headerCatalogue">
+            <h1 id="headCatalTitre">Catalogue</h1>
+            <span><a href="/admin/">Accès Administrateur</a></span>
+        </header>
+
+        <main>
+
+            <nav>
+                <h3>Recherche :</h3>
+
+                <form action="{% url 'catalogue' %}" method="get">
+                    <label for="choixCateg">Choisir une Catégorie :</label>
+                    <select name="choixCateg">
+                        <option value="">Aucune Catégorie</option>
+                            {% for catego in categories %}
+                                <option value={{ catego.id }}>{{ catego.nomCateg }}</option>
+                            {% endfor %}
+                    </select>
+                    <input type="submit" value="Recherche">
+                </form>
+
+            </nav>
+
+            <article>
+                {% if articles.count == 0 %}
+
+                    <i>Aucun Article est enregistré</i>
+
+                {% else %}
+
+                    <div id="listeArticles">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Photo</th>
+                                    <th scope="col">Libellé</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Catégorie</th>
+                                    <th scope="col">Prix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for article in articles %}
+                                
+
+                                <tr>
+                                    <td scope="row"><img src={% static article.photoArticle %} width="100"/></td>
+                                    <td>{{ article.nom }}</td>
+                                    <td>{{ article.description }}</td>
+                                    <td>{{ article.categorie }}</td>
+                                    {% if article.DatesPromo %}
+                                        <td>
+                                            <p><strong>PROMO</strong></p>
+                                            <p><strong>{{ article.articleEnPromo }} €</strong> <s>{{ article.prix }} €</s></p>
+                                            <p><i> - {{ article.promoPourcent }}%</i></p>
+                                            <p>{{ article.promoDebut }} ~~ {{ article.promoFin }}</p>
+                                        </td>
+
+                                    {% else %}
+
+                                        <td>{{ article.prix }} €</td>
+
+                                    {% endif %}
+
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% endif %}
+
+            </article>
+
+        </main>
+
+    </body>
+</html>

@@ -1,0 +1,36 @@
+/*Communs*/
+html{
+    background-color: #fdff87;
+}
+
+
+/*/////////Page Accueil/////////*/
+#titreMercadona{
+    text-align: center;
+    font-size: 100px;
+}
+
+#imgMercadona{
+    display: block;
+    margin: auto;
+}
+
+#boutonCatalogue{
+    display:block;
+    width:100px;
+    margin:0 auto;
+}
+
+/*/////////Page Catalogue/////////*/
+#headerCatalogue{
+    background-color: #f2c06b;
+}
+
+#headCatalTitre{
+    font-size: 30px;
+    text-align: center;
+}
+
+article{
+    margin: 40px 40px;
+}
